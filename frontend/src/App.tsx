@@ -1,5 +1,5 @@
 import NavigationHeader from "navigation/NavigationHeader";
-import ImageConvert from "pages/ImageConvert";
+import ImageConverter from "pages/ImageConverter";
 import LandingPage from "pages/LandingPage";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function App() {
         createRoutesFromElements(
             <Route path="/">
                 <Route index element={<LandingPage />} />
-                <Route path="/converter" element={<ImageConvert />} />
+                <Route path="/converter" element={<ImageConverter />} />
             </Route>
         )
     );
