@@ -22,12 +22,11 @@ function LandingPage() {
                 </p>
 
                 <div>
-                    <PrimaryButton onClick={handleClick}>
-                        <span className="text-2xl">
-                            <FontAwesomeIcon icon={faFileArrowUp} />
-                        </span>
-                        <p>Upload Image</p>
-                    </PrimaryButton>
+                    <PrimaryButton
+                        onClick={handleClick}
+                        icon={<FontAwesomeIcon icon={faFileArrowUp} />}
+                        buttonText="Upload Image"
+                    />
                 </div>
             </section>
 
