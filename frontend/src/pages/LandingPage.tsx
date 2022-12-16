@@ -1,13 +1,9 @@
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import beforeAndAfterImage from "assets/before-after-comparision.png";
-import PrimaryButton from "buttons/PrimaryButton";
+import PrimaryLink from "buttons/PrimaryLink";
 
 function LandingPage() {
-    function handleClick() {
-        console.log("clicking");
-    }
-
     return (
         <main className="fullscreen-without-header flex flex-col md:flex-row items-stretch gap-4 md:gap-8">
             <section className="w-full md:w-[50%] md:py-12 flex flex-col justify-evenly md:pr-12">
@@ -22,8 +18,8 @@ function LandingPage() {
                 </p>
 
                 <div className="self-center md:self-start mb-12 md:mb-4">
-                    <PrimaryButton
-                        onClick={handleClick}
+                    <PrimaryLink
+                        linkToPath="/converter"
                         icon={<FontAwesomeIcon icon={faFileArrowUp} />}
                         buttonText="Upload Image"
                     />
