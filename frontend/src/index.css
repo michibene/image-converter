@@ -25,7 +25,10 @@ body {
     min-width: 320px;
     min-height: 100vh;
 
-    font-size: 1.1rem;
+    background-image: url("background-image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header {
