@@ -18,7 +18,9 @@
         "baseUrl": "./src",
         "paths": {
             "assets/*": ["./assets/*"],
-            "navigation/*": ["./components/ui/navigation/*"]
+            "buttons/*": ["./components/ui/buttons/*"],
+            "navigation/*": ["./components/ui/navigation/*"],
+            "pages/*": ["./pages/*"]
         }
     },
     "include": ["src"],

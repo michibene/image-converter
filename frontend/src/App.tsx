@@ -1,11 +1,12 @@
 import NavigationHeader from "navigation/NavigationHeader";
+import LandingPage from "pages/LandingPage";
 
 function App() {
     return (
-        <div className="App">
+        <div className="max-w-7xl mx-auto min-h-screen px-5">
             <NavigationHeader />
 
-            <h1>Convert a color image to grayscale online</h1>
+            <LandingPage />
         </div>
     );
 }
