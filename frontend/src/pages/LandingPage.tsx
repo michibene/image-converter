@@ -1,7 +1,7 @@
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import beforeAndAfterImage from "assets/before-after-comparision.png";
-import PrimaryLink from "buttons/PrimaryLink";
+import MainLink from "ui/buttons/MainLink";
 
 function LandingPage() {
     return (
@@ -18,7 +18,7 @@ function LandingPage() {
                 </p>
 
                 <div className="self-center md:self-start mb-12 md:mb-4">
-                    <PrimaryLink
+                    <MainLink
                         linkToPath="/converter"
                         icon={<FontAwesomeIcon icon={faFileArrowUp} />}
                         buttonText="Upload Image"

@@ -6,7 +6,7 @@ interface ButtonProps {
     buttonText: string;
 }
 
-function PrimaryLink({ linkToPath, icon, buttonText }: ButtonProps) {
+function MainLink({ linkToPath, icon, buttonText }: ButtonProps) {
     return (
         <Link
             to={linkToPath}
@@ -19,4 +19,4 @@ function PrimaryLink({ linkToPath, icon, buttonText }: ButtonProps) {
     );
 }
 
-export default PrimaryLink;
+export default MainLink;

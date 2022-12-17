@@ -1,7 +1,7 @@
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fileUploadOutlineIcon from "assets/file-arrow-up-regular.svg";
-import PrimaryButton from "buttons/PrimaryButton";
+import MainButton from "ui/buttons/MainButton";
 import { useRef, useState } from "react";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
@@ -34,7 +34,13 @@ function ImageConvertInputSection() {
         <ImageManipulationCard
             title="Input Image"
             classNameProps="section--start"
-            actionButton={<PrimaryButton icon={<FontAwesomeIcon icon={faFileArrowUp} />} buttonText="Convert Image" />}
+            actionButton={
+                <MainButton
+                    type="primary"
+                    icon={<FontAwesomeIcon icon={faFileArrowUp} />}
+                    buttonText="Convert Image"
+                />
+            }
         >
             {selectedFile ? (
                 <img src={selectedFileUrl} alt="Selected file for conversion" />
