@@ -5,7 +5,7 @@ import MainButton from "ui/buttons/MainButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
 function ImageConvertGrayscaleOutputSection() {
-    const [isClickable, setIsClickable] = useState(false);
+    const [isReadyToDownload, setIsReadyToDownload] = useState(true);
 
     return (
         <ImageManipulationCard
@@ -15,6 +15,7 @@ function ImageConvertGrayscaleOutputSection() {
                     type="success"
                     icon={<FontAwesomeIcon icon={faDownload} />}
                     buttonText="Download Image"
+                    isDisabled={isReadyToDownload}
                 />
             }
         ></ImageManipulationCard>
