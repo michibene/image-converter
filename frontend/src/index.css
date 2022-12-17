@@ -43,3 +43,21 @@ header {
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%2394A0B8FF' stroke-width='2' stroke-dasharray='6' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
     border-radius: 16px;
 }
+
+.divider-section:before {
+    content: "";
+    border-top: 1.5px solid #94a0b8;
+    border-right: none;
+    align-self: stretch;
+}
+
+.section--start {
+    order: -1;
+}
+
+@media (min-width: 768px) {
+    .divider-section:before {
+        border-top: none;
+        border-right: 1.5px solid #94a0b8;
+    }
+}
