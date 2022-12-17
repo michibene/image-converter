@@ -14,7 +14,7 @@ function App() {
     );
 
     return (
-        <div className="max-w-7xl mx-auto min-h-screen px-8 lg:px-12 ">
+        <div className="max-w-[1440px] mx-auto min-h-screen px-8 lg:px-12 ">
             <NavigationHeader />
             <RouterProvider router={router} />
         </div>

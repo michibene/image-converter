@@ -5,20 +5,29 @@ import MainButton from "ui/buttons/MainButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
 function ImageConvertGrayscaleOutputSection() {
-    const [isReadyToDownload, setIsReadyToDownload] = useState(true);
+    const [isReadyToDownload, setIsReadyToDownload] = useState(false);
 
     return (
         <ImageManipulationCard
-            title="GrayScaled Image"
+            title="Grayscaled Image"
+            isImageLoaded={isReadyToDownload}
             actionButton={
                 <MainButton
                     type="success"
                     icon={<FontAwesomeIcon icon={faDownload} />}
                     buttonText="Download Image"
-                    isDisabled={isReadyToDownload}
+                    isDisabled={!isReadyToDownload}
                 />
             }
-        ></ImageManipulationCard>
+        >
+            {isReadyToDownload ? (
+                <p>IMAGE</p>
+            ) : (
+                <div className="text-fontLightColor flex flex-col items-center text-center">
+                    <p>Your black and white image will be ready after successful conversion</p>
+                </div>
+            )}
+        </ImageManipulationCard>
     );
 }
 

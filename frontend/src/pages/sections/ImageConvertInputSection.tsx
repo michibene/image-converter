@@ -9,7 +9,7 @@ function ImageConvertInputSection() {
     const inputRef = useRef<HTMLInputElement>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewImageUrl, setPreviewImageUrl] = useState<string>("");
-    const [isReadyToUpload, setIsReadyToUpload] = useState(true);
+    const [isReadyToUpload, setIsReadyToUpload] = useState(false);
 
     function handleSelectedFile(event: React.ChangeEvent<HTMLInputElement>) {
         // Check for null first (later I will implement proper error message showing to user)
@@ -25,7 +25,7 @@ function ImageConvertInputSection() {
 
         setSelectedFile(event.target.files[0]);
         setPreviewImageUrl(URL.createObjectURL(event.target.files[0]));
-        setIsReadyToUpload(!isReadyToUpload);
+        setIsReadyToUpload(true);
     }
 
     // To create custom button for choosing file (and hide the default input file element)
@@ -40,21 +40,29 @@ function ImageConvertInputSection() {
             return;
         }
         formData.append("imageToConvert", selectedFile, selectedFile.name);
-        console.log(formData.get("imageToConvert"));
     }
 
     return (
         <ImageManipulationCard
             title="Input Image"
             classNameProps="section--start"
+            isImageLoaded={isReadyToUpload}
             actionButton={
                 <MainButton
                     type="primary"
                     icon={<FontAwesomeIcon icon={faFileArrowUp} />}
                     buttonText="Convert Image"
-                    isDisabled={isReadyToUpload}
+                    isDisabled={!isReadyToUpload}
                     onClick={handleFileUpload}
                 />
+            }
+            secondButton={
+                <button
+                    onClick={handleBrowseButtonClick}
+                    className=" px-10 text-fontLightColor hover:text-primaryColor"
+                >
+                    Load different image
+                </button>
             }
         >
             {selectedFile ? (
@@ -63,22 +71,25 @@ function ImageConvertInputSection() {
                 <>
                     <div className="text-fontLightColor flex flex-col items-center text-center">
                         <img src={fileUploadOutlineIcon} alt="File upload icon" className="pb-3" />
-                        <p className="font-bold">Select an Image file to upload</p>
+                        <p>Select an Image file to upload</p>
                         <p>in JPEG, PNG, BMP or TIFF format</p>
                     </div>
 
-                    <input
-                        ref={inputRef}
-                        type="file"
-                        onChange={handleSelectedFile}
-                        className="hidden"
-                        accept=".jpg, .jpeg, .png, .bmp, .tiff"
-                    />
-                    <button onClick={handleBrowseButtonClick} className="text-primaryColor font-bold md:text-lg">
+                    <button
+                        onClick={handleBrowseButtonClick}
+                        className="text-primaryColor hover:text-fontDarkestColor font-bold md:text-lg"
+                    >
                         Browse files
                     </button>
                 </>
             )}
+            <input
+                ref={inputRef}
+                type="file"
+                onChange={handleSelectedFile}
+                className="hidden"
+                accept=".jpg, .jpeg, .png, .bmp, .tiff"
+            />
         </ImageManipulationCard>
     );
 }
