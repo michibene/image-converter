@@ -1,8 +1,9 @@
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fileUploadOutlineIcon from "assets/file-arrow-up-regular.svg";
-import MainButton from "ui/buttons/MainButton";
+import axios from "axios";
 import { useRef, useState } from "react";
+import MainButton from "ui/buttons/MainButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
 function ImageConvertInputSection() {
@@ -40,6 +41,10 @@ function ImageConvertInputSection() {
             return;
         }
         formData.append("imageToConvert", selectedFile, selectedFile.name);
+
+        axios.post("http://localhost:3000/api/convert/grayscale", formData).then((res) => {
+            console.log(res);
+        });
     }
 
     return (
