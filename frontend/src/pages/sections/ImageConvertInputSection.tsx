@@ -2,11 +2,15 @@ import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fileUploadOutlineIcon from "assets/file-arrow-up-regular.svg";
 import axios from "axios";
-import { useRef, useState } from "react";
+import { Dispatch, useRef, useState } from "react";
 import MainButton from "ui/buttons/MainButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
-function ImageConvertInputSection() {
+interface ImageConvertInputSectionProps {
+    setConvertedImageUrl: Dispatch<React.SetStateAction<string>>;
+}
+
+function ImageConvertInputSection({ setConvertedImageUrl }: ImageConvertInputSectionProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewImageUrl, setPreviewImageUrl] = useState<string>("");
@@ -42,9 +46,15 @@ function ImageConvertInputSection() {
         }
         formData.append("imageToConvert", selectedFile, selectedFile.name);
 
-        axios.post("http://localhost:3000/api/convert/grayscale", formData).then((res) => {
-            console.log(res);
-        });
+        axios
+            .post("http://localhost:3000/api/convert/grayscale", formData, { responseType: "blob" })
+            .then((res) => {
+                console.log(res);
+                setConvertedImageUrl(URL.createObjectURL(res.data));
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }
 
     return (
@@ -71,7 +81,9 @@ function ImageConvertInputSection() {
             }
         >
             {selectedFile ? (
-                <img src={previewImageUrl} alt="Selected image file ready for conversion" />
+                <>
+                    <img src={previewImageUrl} alt="Selected image file ready for conversion" />
+                </>
             ) : (
                 <>
                     <div className="text-fontLightColor flex flex-col items-center text-center">

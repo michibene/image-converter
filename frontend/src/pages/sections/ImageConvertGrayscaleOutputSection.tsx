@@ -4,8 +4,12 @@ import { useState } from "react";
 import MainButton from "ui/buttons/MainButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
-function ImageConvertGrayscaleOutputSection() {
-    const [isReadyToDownload, setIsReadyToDownload] = useState(false);
+interface ImageConvertGrayscaleOutputSectionProps {
+    convertedImageUrl: string;
+}
+
+function ImageConvertGrayscaleOutputSection({ convertedImageUrl }: ImageConvertGrayscaleOutputSectionProps) {
+    const [isReadyToDownload, setIsReadyToDownload] = useState(true);
 
     return (
         <ImageManipulationCard
@@ -21,7 +25,7 @@ function ImageConvertGrayscaleOutputSection() {
             }
         >
             {isReadyToDownload ? (
-                <p>IMAGE</p>
+                <img src={convertedImageUrl} alt="Image after conversion" />
             ) : (
                 <div className="text-fontLightColor flex flex-col items-center text-center">
                     <p>Your black and white image will be ready after successful conversion</p>
