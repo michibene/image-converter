@@ -1,7 +1,7 @@
 import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fileUploadOutlineIcon from "assets/file-arrow-up-regular.svg";
-import axios from "axios";
+import axiosInstance from "utils/axios";
 import { Dispatch, useRef, useState } from "react";
 import MainButton from "ui/buttons/MainButton";
 import SecondButton from "ui/buttons/SecondButton";
@@ -9,16 +9,16 @@ import ImageManipulationCard from "ui/ImageManipulationCard";
 
 interface ImageConvertInputSectionProps {
     setConvertedImageUrl: Dispatch<React.SetStateAction<string>>;
+    setErrorMessage: Dispatch<React.SetStateAction<string>>;
 }
 
-function ImageConvertInputSection({ setConvertedImageUrl }: ImageConvertInputSectionProps) {
+function ImageConvertInputSection({ setConvertedImageUrl, setErrorMessage }: ImageConvertInputSectionProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewImageUrl, setPreviewImageUrl] = useState<string>("");
-    const [isReadyToUpload, setIsReadyToUpload] = useState(false);
+    const [isReadyToUpload, setIsReadyToUpload] = useState<boolean>(false);
 
     function handleSelectedFile(event: React.ChangeEvent<HTMLInputElement>) {
-        // Check for null first (later I will implement proper error message showing to user)
         if (!event.target.files || event.target.files.length === 0) {
             console.error("File was not selected!");
             return;
@@ -27,7 +27,6 @@ function ImageConvertInputSection({ setConvertedImageUrl }: ImageConvertInputSec
             alert("Please select only 1 file to convert.");
             return;
         }
-        // Validation for correct file type is already in input field
 
         setSelectedFile(event.target.files[0]);
         setPreviewImageUrl(URL.createObjectURL(event.target.files[0]));
@@ -47,13 +46,13 @@ function ImageConvertInputSection({ setConvertedImageUrl }: ImageConvertInputSec
         }
         formData.append("imageToConvert", selectedFile, selectedFile.name);
 
-        axios
+        axiosInstance
             .post("http://localhost:3000/api/convert/grayscale", formData, { responseType: "blob" })
             .then((res) => {
                 setConvertedImageUrl(URL.createObjectURL(res.data));
             })
-            .catch((err) => {
-                console.error(err);
+            .catch(async (error) => {
+                setErrorMessage(error.response.data.message);
             });
     }
 

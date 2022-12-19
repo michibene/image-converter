@@ -23,7 +23,8 @@
             "modals/*": ["./components/ui/modals/*"],
             "navigation/*": ["./components/ui/navigation/*"],
             "pages/*": ["./pages/*"],
-            "sections/*": ["./pages/sections/*"]
+            "sections/*": ["./pages/sections/*"],
+            "utils/*": ["./utils/*"]
         }
     },
     "include": ["src"],

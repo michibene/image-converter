@@ -1,15 +1,19 @@
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef, useState } from "react";
 import MainButton from "buttons/MainButton";
-import ImageManipulationCard from "ui/ImageManipulationCard";
 import Modal from "modals/Modal";
+import { useEffect, useRef, useState } from "react";
+import ImageManipulationCard from "ui/ImageManipulationCard";
 
 interface ImageConvertGrayscaleOutputSectionProps {
     convertedImageUrl: string;
+    errorMessage: string;
 }
 
-function ImageConvertGrayscaleOutputSection({ convertedImageUrl }: ImageConvertGrayscaleOutputSectionProps) {
+function ImageConvertGrayscaleOutputSection({
+    convertedImageUrl,
+    errorMessage,
+}: ImageConvertGrayscaleOutputSectionProps) {
     const [isReadyToDownload, setIsReadyToDownload] = useState<boolean>(false);
     const [modalIsShown, setModalIsShown] = useState<boolean>(false);
     const downloadAnchorRef = useRef<HTMLAnchorElement>(null);
@@ -26,7 +30,6 @@ function ImageConvertGrayscaleOutputSection({ convertedImageUrl }: ImageConvertG
             console.error("Cannot download converted image. Missing download tag (<a>) or image name.");
             return;
         }
-
         // Set name for downloaded image
         downloadAnchorRef.current.download = downloadInputNamerRef.current.value;
         downloadAnchorRef.current.click();
@@ -54,8 +57,14 @@ function ImageConvertGrayscaleOutputSection({ convertedImageUrl }: ImageConvertG
                     <a href={convertedImageUrl} className="hidden" ref={downloadAnchorRef} />
                 </>
             ) : (
-                <div className="text-fontLightColor flex flex-col items-center text-center">
-                    <p>Your black and white image will be ready after successful conversion</p>
+                <div className="flex flex-col items-center text-center">
+                    {errorMessage ? (
+                        <p className="text-rose-600 font-medium">{errorMessage}</p>
+                    ) : (
+                        <p className="text-fontLightColor">
+                            Your black and white image will be ready after successful conversion
+                        </p>
+                    )}
                 </div>
             )}
 
