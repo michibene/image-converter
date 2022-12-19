@@ -4,6 +4,7 @@ import fileUploadOutlineIcon from "assets/file-arrow-up-regular.svg";
 import axios from "axios";
 import { Dispatch, useRef, useState } from "react";
 import MainButton from "ui/buttons/MainButton";
+import SecondButton from "ui/buttons/SecondButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
 interface ImageConvertInputSectionProps {
@@ -49,7 +50,6 @@ function ImageConvertInputSection({ setConvertedImageUrl }: ImageConvertInputSec
         axios
             .post("http://localhost:3000/api/convert/grayscale", formData, { responseType: "blob" })
             .then((res) => {
-                console.log(res);
                 setConvertedImageUrl(URL.createObjectURL(res.data));
             })
             .catch((err) => {
@@ -71,14 +71,7 @@ function ImageConvertInputSection({ setConvertedImageUrl }: ImageConvertInputSec
                     onClick={handleFileUpload}
                 />
             }
-            secondButton={
-                <button
-                    onClick={handleBrowseButtonClick}
-                    className=" px-10 text-fontLightColor hover:text-primaryColor"
-                >
-                    Load different image
-                </button>
-            }
+            secondButton={<SecondButton buttonText="Load different image" onClick={handleBrowseButtonClick} />}
         >
             {selectedFile ? (
                 <>

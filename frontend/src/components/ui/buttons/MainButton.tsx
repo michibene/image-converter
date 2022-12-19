@@ -2,8 +2,8 @@ interface ButtonProps {
     type: string;
     icon?: JSX.Element;
     buttonText: string;
-    isDisabled: boolean;
-    onClick?: () => void;
+    isDisabled?: boolean;
+    onClick: () => void;
 }
 
 function MainButton({ type, icon, buttonText, isDisabled, onClick }: ButtonProps) {

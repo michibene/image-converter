@@ -24,7 +24,7 @@ function ImageManipulationCard({
             </div>
 
             {secondButton ? (
-                <div className="pt-10 flex flex-col md:flex-row gap-6 md:gap-0 justify-between">
+                <div className="pt-10 flex flex-col md:flex-row gap-6 justify-between">
                     {actionButton}
                     {isImageLoaded && secondButton}
                 </div>

@@ -20,6 +20,7 @@
             "assets/*": ["./assets/*"],
             "ui/*": ["./components/ui/*"],
             "buttons/*": ["./components/ui/buttons/*"],
+            "modals/*": ["./components/ui/modals/*"],
             "navigation/*": ["./components/ui/navigation/*"],
             "pages/*": ["./pages/*"],
             "sections/*": ["./pages/sections/*"]
