@@ -7,26 +7,26 @@ It is implemented with Node.JS and Express framework for backend and React for f
 
 1. Clone repository
 
-    ```
+    ```bash
     git clone git@github.com:michibene/image-converter.git
     cd image-converter
     ```
 
 2. Install necessary packages for backend & frontend
 
-    ```
+    ```bash
     cd backend
     npm install
     ```
 
-    ```
+    ```bash
     cd ../frontend
     npm install
     ```
 
 3. (optional)  
    You can specify a custom server port by creating an `.env` file in backend folder
-    ```
+    ```bash
     # Server configuration
     PORT = 3000
     ```
