@@ -1,13 +1,16 @@
 import path from "path";
+import imageManipulationService from "../services/imageManipulationService.js";
 
 const conversionController = {};
 
-conversionController.toGrayscale = (req, res, next) => {
+conversionController.toGrayscale = async (req, res, next) => {
     try {
-        console.log(req.file);
-        return res.sendFile(req.file.originalname, { root: path.resolve("./tempUploads") });
+        const imageName = req.file.originalname;
+        const rootPath = path.resolve(`./tempUploads`);
+        const convertedImage = await imageManipulationService.toGrayscale(imageName, `${rootPath}/${imageName}`);
+
+        return res.sendFile(convertedImage, { root: rootPath });
     } catch (error) {
-        console.log("_______ERROR______");
         next(error);
     }
 };

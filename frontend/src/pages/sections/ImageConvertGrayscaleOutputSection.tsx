@@ -1,6 +1,6 @@
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainButton from "ui/buttons/MainButton";
 import ImageManipulationCard from "ui/ImageManipulationCard";
 
@@ -9,7 +9,13 @@ interface ImageConvertGrayscaleOutputSectionProps {
 }
 
 function ImageConvertGrayscaleOutputSection({ convertedImageUrl }: ImageConvertGrayscaleOutputSectionProps) {
-    const [isReadyToDownload, setIsReadyToDownload] = useState(true);
+    const [isReadyToDownload, setIsReadyToDownload] = useState(false);
+
+    useEffect(() => {
+        if (convertedImageUrl !== "") {
+            setIsReadyToDownload(true);
+        }
+    }, [convertedImageUrl]);
 
     return (
         <ImageManipulationCard
