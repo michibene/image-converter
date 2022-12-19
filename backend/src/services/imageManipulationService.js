@@ -1,3 +1,4 @@
+import { unlink } from "fs/promises";
 import Jimp from "jimp";
 import path from "path";
 
@@ -18,6 +19,14 @@ imageManipulationService.toGrayscale = async (originalName, imagePath) => {
         });
 
     return convertedImageName;
+};
+
+imageManipulationService.deleteFromTemp = async (imagePath) => {
+    try {
+        await unlink(imagePath);
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 export default imageManipulationService;
