@@ -9,7 +9,7 @@ const tempUploadsStorage = multer.diskStorage({
     },
 });
 
-const allowedFileTypes = ["image/jpg", "image/jpeg", /* "image/png" */, "image/bmp", "image/tiff"];
+const allowedFileTypes = ["image/jpg", "image/jpeg", "image/png", "image/bmp", "image/tiff"];
 
 const fileValidation = (req, file, callbackFn) => {
     if (!allowedFileTypes.some((type) => type === file.mimetype)) {

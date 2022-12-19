@@ -9,6 +9,7 @@ module.exports = {
                 fontDarkestColor: "#1a1919",
                 primaryColor: "#0091d0",
                 primaryDarkerColor: "#0577a9",
+                primaryDarkestColor: "#0b337e",
                 successColor: "#38BD91",
             },
         },

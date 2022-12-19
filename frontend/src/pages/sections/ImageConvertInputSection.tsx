@@ -78,7 +78,7 @@ function ImageConvertInputSection({ setConvertedImageUrl, setErrorMessage }: Ima
                 </>
             ) : (
                 <>
-                    <div className="text-fontLightColor flex flex-col items-center text-center">
+                    <div className="flex flex-col items-center text-center">
                         <img src={fileUploadOutlineIcon} alt="File upload icon" className="pb-3" />
                         <p>Select an Image file to upload</p>
                         <p>in JPEG, PNG, BMP or TIFF format</p>

@@ -23,7 +23,7 @@ function MainButton({ type, icon, buttonText, isDisabled, onClick }: ButtonProps
         <button
             disabled={isDisabled}
             onClick={onClick}
-            className={`py-3 px-12 inline-flex items-center gap-4 rounded-full text-white
+            className={`py-4 px-10 inline-flex items-center gap-4 rounded-full text-white
                 ${
                     isDisabled
                         ? "bg-fontLightestColor opacity-50"

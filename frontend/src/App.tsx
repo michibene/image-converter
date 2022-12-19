@@ -7,15 +7,30 @@ function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/">
-                <Route index element={<LandingPage />} />
-                <Route path="/converter" element={<ImageConverter />} />
+                <Route
+                    index
+                    element={
+                        <>
+                            <NavigationHeader />
+                            <LandingPage />
+                        </>
+                    }
+                />
+                <Route
+                    path="/converter"
+                    element={
+                        <>
+                            <NavigationHeader />
+                            <ImageConverter />
+                        </>
+                    }
+                />
             </Route>
         )
     );
 
     return (
         <div className="max-w-[1440px] mx-auto min-h-screen px-8 lg:px-12 ">
-            <NavigationHeader />
             <RouterProvider router={router} />
         </div>
     );

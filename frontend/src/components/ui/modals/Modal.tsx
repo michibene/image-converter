@@ -13,7 +13,7 @@ function Modal({ setIsShown, inputNameRef, handleMainButtonClick }: ModalProps) 
         <>
             <div className="flex justify-center items-center overflow-hidden fixed inset-0 z-50">
                 <span
-                    className="fixed inset-0 w-full h-full bg-[#29333C] opacity-80 rounded-3xl"
+                    className="fixed inset-0 w-full h-full bg-[#4e5862] bg-opacity-80 backdrop-filter backdrop-blur-md rounded-2xl"
                     onClick={() => setIsShown(false)}
                 />
 
@@ -22,8 +22,8 @@ function Modal({ setIsShown, inputNameRef, handleMainButtonClick }: ModalProps) 
                         <div className="py-6 px-8 text-center bg-[#EDE8EA] rounded-t-xl">
                             <h4 className="pt-2 text-2xl font-bold text-center">Save image</h4>
                             <p className="my-4 text-[0.9rem] leading-relaxed text-gray-500">
-                                Before saving the converted image, please enter a name of the file (without the file
-                                extension - it will be the same as original)
+                                Before saving the converted image, enter a file name (without the file extension - it
+                                will be the same as the original)
                             </p>
                         </div>
 

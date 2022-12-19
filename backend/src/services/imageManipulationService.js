@@ -4,15 +4,16 @@ import path from "path";
 
 const imageManipulationService = {};
 
-imageManipulationService.toGrayscale = async (originalName, imagePath) => {
+imageManipulationService.getRootPath = path.resolve("./tempUploads");
+
+imageManipulationService.toGrayscale = async (originalName) => {
     const [name, fileType] = originalName.split(".");
     const convertedImageName = `${name}-grayscale.${fileType}`;
 
-    await Jimp.read(imagePath)
+    await Jimp.read(`${imageManipulationService.getRootPath}/${originalName}`)
         .then(async (image) => {
             image.grayscale();
-            await image.writeAsync(path.resolve(`./tempUploads/${convertedImageName}`));
-            return image;
+            await image.writeAsync(`${imageManipulationService.getRootPath}/${convertedImageName}`);
         })
         .catch((err) => {
             console.error(err);
@@ -21,9 +22,9 @@ imageManipulationService.toGrayscale = async (originalName, imagePath) => {
     return convertedImageName;
 };
 
-imageManipulationService.deleteFromTemp = async (imagePath) => {
+imageManipulationService.deleteFromTemp = async (imageName) => {
     try {
-        await unlink(imagePath);
+        await unlink(`${imageManipulationService.getRootPath}/${imageName}`);
     } catch (err) {
         console.log(err);
     }
